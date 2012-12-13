@@ -16,10 +16,15 @@
 @property (strong, nonatomic) UIImagePickerController *pickerController;
 @property (strong, nonatomic) UIView *recordView;
 @property (strong, nonatomic) AVCaptureMovieFileOutput *movieFileOutput;
+@property (strong, nonatomic) AVCaptureSession *session;
 @property (strong, nonatomic) UIButton *stopRecordingButton;
 
 - (void)stopRecording;
 - (NSURL *)tempFileURL;
+- (AVCaptureDevice *) audioDevice;
+- (AVCaptureDevice *)cameraWithPosition:(AVCaptureDevicePosition) position;
+- (AVCaptureDevice *)frontFacingCamera;
+- (AVCaptureDevice *)backFacingCamera;
 
 @end
 
@@ -30,6 +35,7 @@
 @synthesize recordVideoButton = _recordVideoButton;
 @synthesize chooseVideoButton = _chooseVideoButton;
 @synthesize movieFileOutput = _movieFileOutput;
+@synthesize session = _session;
 @synthesize stopRecordingButton = _stopRecordingButton;
 
 #pragma mark - Memory Management Methods
@@ -46,6 +52,7 @@
     if (self) {
         self.title = @"Record";
     }
+    
     return self;
 }
 
@@ -62,32 +69,24 @@
 {
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
-    self.recordView = [[UIView alloc] initWithFrame:self.appDelegate.window.frame];
     
-    self.movieFileOutput = [[AVCaptureMovieFileOutput alloc] init];
+    AVCaptureSession *session = [self session];
+    AVCaptureDeviceInput *newAudioInput = [[AVCaptureDeviceInput alloc] initWithDevice:[self audioDevice] error:nil];
+    AVCaptureDeviceInput *newVideoInput = [[AVCaptureDeviceInput alloc] initWithDevice:[self backFacingCamera] error:nil];
+    
+    [session beginConfiguration];
+    [session addInput:newAudioInput];
+    [session addInput:newVideoInput];
+    [session commitConfiguration];
 
-    AVCaptureSession *session = [[AVCaptureSession alloc] init];
-    [session addOutput:_movieFileOutput];
+    self.movieFileOutput = [[AVCaptureMovieFileOutput alloc] init];
+    [[self movieFileOutput] startRecordingToOutputFileURL:[self tempFileURL]
+                                        recordingDelegate:self];
+    [self.view addSubview:_recordView];
     
-    AVCaptureVideoPreviewLayer *captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
-    captureVideoPreviewLayer.frame = _recordView.frame;
-    [self.recordView.layer addSublayer:captureVideoPreviewLayer];
-    
-    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-        
-    NSError *error = nil;
-    AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
-    if (!input) {
-        // Handle the error appropriately.
-        DLog(@"ERROR: trying to open camera: %@", error);
-    }
     
     [session startRunning];
     
-    [[self movieFileOutput] startRecordingToOutputFileURL:[self tempFileURL]
-                                        recordingDelegate:self];
-    
-    [self.view addSubview:_recordView];
     self.stopRecordingButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [self.stopRecordingButton setFrame:CGRectMake(75.0f, 250.0f, 150.0f, 40.0f)];
     [self.stopRecordingButton setTitle:@"Stop Recording" forState:UIControlStateNormal];
@@ -158,4 +157,36 @@
     NSURL *outputURL = [[NSURL alloc] initFileURLWithPath:outputPath];
     return outputURL;
 }
+
+- (AVCaptureDevice *) audioDevice
+{
+    NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeAudio];
+    if ([devices count] > 0) {
+        return [devices objectAtIndex:0];
+    }
+    return nil;
+}
+
+
+- (AVCaptureDevice *)cameraWithPosition:(AVCaptureDevicePosition) position
+{
+    NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+    for (AVCaptureDevice *device in devices) {
+        if ([device position] == position) {
+            return device;
+        }
+    }
+    return nil;
+}
+
+- (AVCaptureDevice *)frontFacingCamera
+{
+    return [self cameraWithPosition:AVCaptureDevicePositionFront];
+}
+
+- (AVCaptureDevice *)backFacingCamera
+{
+    return [self cameraWithPosition:AVCaptureDevicePositionBack];
+}
+
 @end
