@@ -17,6 +17,8 @@
     #import <MobileCoreServices/MobileCoreServices.h>
     #import <AVFoundation/AVFoundation.h>
     #import <AssetsLibrary/AssetsLibrary.h>
+    #import <QuartzCore/QuartzCore.h>
+    #import <CoreMedia/CoreMedia.h>
 
     // Third party Libraries
     #import "AFNetworking.h"

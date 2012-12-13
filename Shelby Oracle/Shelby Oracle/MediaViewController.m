@@ -20,6 +20,8 @@
 @property (strong, nonatomic) UIButton *stopRecordingButton;
 
 - (void)stopRecording;
+- (void)addWatermarkForMovieFile:(NSURL*)url;
+- (NSString*)tempFileString;
 - (NSURL *)tempFileURL;
 
 @end
@@ -68,30 +70,37 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     
     self.session = [[AVCaptureSession alloc] init];
-    AVCaptureVideoPreviewLayer *captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:_session];
-    [captureVideoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
-    self.recordView = [[UIView alloc] initWithFrame:self.view.frame];
-    [self.recordView.layer setMasksToBounds:YES];
-    [self.view addSubview:_recordView];
-    
     
     // Configure AVCaptureSession
     [self.session beginConfiguration];
     
+    // Add Device
     AVCaptureDevice *device =[AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     AVCaptureDeviceInput *deviceInput = [AVCaptureDeviceInput deviceInputWithDevice:device error:nil];
     [self.session addInput:deviceInput];
     
+    // Add Still Image Output
     AVCaptureStillImageOutput *stillImageOutput = [[AVCaptureStillImageOutput alloc] init];
     NSDictionary *outputSettings = [[NSDictionary alloc] initWithObjectsAndKeys: AVVideoCodecJPEG, AVVideoCodecKey, nil];
     [stillImageOutput setOutputSettings:outputSettings];
     [self.session addOutput:stillImageOutput];
-    
+
+    // Add Video File Output
     self.movieFileOutput = [[AVCaptureMovieFileOutput alloc] init];
     [self.session addOutput:_movieFileOutput];
+
+    // Add Video Layer
+    AVCaptureVideoPreviewLayer *captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:_session];
+    [captureVideoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
     
     [self.session commitConfiguration];
 
+    // Add view
+    self.recordView = [[UIView alloc] initWithFrame:self.view.frame];
+    [self.recordView.layer setMasksToBounds:YES];
+    [self.recordView.layer addSublayer:captureVideoPreviewLayer];
+    [self.view addSubview:_recordView];
+    
     // Begin AVCaptureSession
     [self.session startRunning];
     
@@ -102,7 +111,7 @@
     
     // Add Recording Button
     self.stopRecordingButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [self.stopRecordingButton setFrame:CGRectMake(75.0f, 250.0f, 150.0f, 40.0f)];
+    [self.stopRecordingButton setFrame:CGRectMake(95.0f, 250.0f, 150.0f, 40.0f)];
     [self.stopRecordingButton setTitle:@"Stop Recording" forState:UIControlStateNormal];
     [self.stopRecordingButton addTarget:self action:@selector(stopRecording) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_stopRecordingButton];
@@ -128,6 +137,78 @@
     [self.session stopRunning];
 }
 
+- (void)addWatermarkForMovieFile:(NSURL *)url
+{
+    AVURLAsset* videoAsset = [[AVURLAsset alloc]initWithURL:url options:nil];
+    AVMutableComposition* mixComposition = [AVMutableComposition composition];
+    
+    AVMutableCompositionTrack *compositionVideoTrack = [mixComposition addMutableTrackWithMediaType:AVMediaTypeVideo  preferredTrackID:kCMPersistentTrackID_Invalid];
+    AVAssetTrack *clipVideoTrack = [[videoAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
+    [compositionVideoTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, videoAsset.duration)
+                                   ofTrack:clipVideoTrack
+                                    atTime:kCMTimeZero error:nil];
+    
+    [compositionVideoTrack setPreferredTransform:[[[videoAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] preferredTransform]];
+    
+    UIImage *myImage = [UIImage imageNamed:@"watermark.png"];
+    CALayer *aLayer = [CALayer layer];
+    aLayer.contents = (id)myImage.CGImage;
+    aLayer.frame = CGRectMake(0 , 0, 300, 112);
+    
+    CGSize videoSize = [clipVideoTrack naturalSize];
+    CALayer *parentLayer = [CALayer layer];
+    CALayer *videoLayer = [CALayer layer];
+    parentLayer.frame = CGRectMake(0, 0, videoSize.width, videoSize.height);
+    videoLayer.frame = CGRectMake(0, 0, videoSize.width, videoSize.height);
+    [parentLayer addSublayer:videoLayer];
+    [parentLayer addSublayer:aLayer];
+
+    AVMutableVideoComposition* videoComp = [AVMutableVideoComposition videoComposition];
+    videoComp.renderSize = videoSize;
+    videoComp.frameDuration = CMTimeMake(1, 30);
+    videoComp.animationTool = [AVVideoCompositionCoreAnimationTool videoCompositionCoreAnimationToolWithPostProcessingAsVideoLayer:videoLayer inLayer:parentLayer];
+    
+    AVMutableVideoCompositionInstruction *instruction = [AVMutableVideoCompositionInstruction videoCompositionInstruction];
+    instruction.timeRange = CMTimeRangeMake(kCMTimeZero, [mixComposition duration]);
+    AVAssetTrack *videoTrack = [[mixComposition tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
+    AVMutableVideoCompositionLayerInstruction* layerInstruction = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:videoTrack];
+    instruction.layerInstructions = [NSArray arrayWithObject:layerInstruction];
+    videoComp.instructions = [NSArray arrayWithObject: instruction];
+    
+    AVAssetExportSession *assetExport = [[AVAssetExportSession alloc] initWithAsset:mixComposition presetName:AVAssetExportPresetMediumQuality];//AVAssetExportPresetPassthrough
+    assetExport.videoComposition = videoComp;
+    
+    NSString *videoName = [self tempFileString];
+    
+    NSString *exportPath = [NSTemporaryDirectory() stringByAppendingPathComponent:videoName];
+    NSURL *exportUrl = [NSURL fileURLWithPath:exportPath];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:exportPath])
+    {
+        [[NSFileManager defaultManager] removeItemAtPath:exportPath error:nil];
+    }
+    
+    assetExport.outputFileType = AVFileTypeQuickTimeMovie;
+    assetExport.outputURL = exportUrl;
+    assetExport.shouldOptimizeForNetworkUse = YES;
+    
+    [assetExport exportAsynchronouslyWithCompletionHandler:
+     ^(void ) {
+
+         ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+         if ( [library videoAtPathIsCompatibleWithSavedPhotosAlbum:exportUrl] ) {
+             [library writeVideoAtPathToSavedPhotosAlbum:exportUrl
+                                         completionBlock:^(NSURL *assetURL, NSError *error){
+                                             
+                                             DLog(@"Added Watermark");
+                                             
+                                         }];
+         }
+         
+     }       
+     ];
+}
+
 #pragma mark - AVCaptureFileOutputRecordingDelegate Methods
 - (void)captureOutput:(AVCaptureFileOutput *)captureOutput didStartRecordingToOutputFileAtURL:(NSURL *)fileURL fromConnections:(NSArray *)connections
 {
@@ -136,17 +217,7 @@
 
 - (void)captureOutput:(AVCaptureFileOutput *)captureOutput didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL fromConnections:(NSArray *)connections error:(NSError *)error
 {
-    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
-    if ( [library videoAtPathIsCompatibleWithSavedPhotosAlbum:outputFileURL] ) {
-        [library writeVideoAtPathToSavedPhotosAlbum:outputFileURL
-                                    completionBlock:^(NSURL *assetURL, NSError *error){
-                                    
-                                        // Do nothing
-                                        
-                                    }];
-    } else {
-    // Cannot save data
-    }
+    [self addWatermarkForMovieFile:outputFileURL];
 }
 
 #pragma mark - UIImagePickerOrientation Methods
@@ -168,6 +239,16 @@
 }
 
 #pragma mark - Custom Setters and Getters
+- (NSString *)tempFileString
+{
+    NSDate *date = [NSDate date];
+    NSTimeInterval time = [date timeIntervalSince1970];
+    NSString *unixTime = [NSString stringWithFormat:@"%0.0f", time];
+    NSString *outputString = [[NSString alloc] initWithFormat:@"%@.mov", unixTime];
+    
+    return outputString;
+}
+
 - (NSURL *)tempFileURL
 {
     NSDate *date = [NSDate date];
@@ -175,6 +256,7 @@
     NSString *unixTime = [NSString stringWithFormat:@"%0.0f", time];
     NSString *outputPath = [[NSString alloc] initWithFormat:@"%@%@.mov", NSTemporaryDirectory(), unixTime];
     NSURL *outputURL = [[NSURL alloc] initFileURLWithPath:outputPath];
+    
     return outputURL;
 }
 

@@ -82,12 +82,16 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     if ( textField == self.emailField ) {
+
         [self.passwordField becomeFirstResponder];
-        return NO;
+
     } else {
+        [self.passwordField resignFirstResponder];
         [self loginButtonAction:nil];
-        return YES;
+
     }
+    
+    return YES;
 }
 
 #pragma mark - UIResponder Methods

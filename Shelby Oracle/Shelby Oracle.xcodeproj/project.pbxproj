@@ -37,8 +37,10 @@
 		8E000C26167A355B00907361 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E000C25167A355B00907361 /* MobileCoreServices.framework */; };
 		8E000C28167A3BAD00907361 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E000C27167A3BAD00907361 /* AVFoundation.framework */; };
 		8E965FC9167A460800B56055 /* MediaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E965FC8167A460800B56055 /* MediaViewController.xib */; };
-		8E965FD3167A562000B56055 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E965FD2167A562000B56055 /* AssetsLibrary.framework */; };
 		8E965FD5167A562400B56055 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E965FD4167A562400B56055 /* AssetsLibrary.framework */; };
+		8E965FDB167A6AFE00B56055 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E965FDA167A6AFE00B56055 /* QuartzCore.framework */; };
+		8E965FDD167A6F8000B56055 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E965FDC167A6F8000B56055 /* CoreMedia.framework */; };
+		8E965FDF167A76B900B56055 /* watermark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E965FDE167A76B900B56055 /* watermark.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,8 +94,10 @@
 		8E000C25167A355B00907361 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		8E000C27167A3BAD00907361 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		8E965FC8167A460800B56055 /* MediaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MediaViewController.xib; sourceTree = "<group>"; };
-		8E965FD2167A562000B56055 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		8E965FD4167A562400B56055 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		8E965FDA167A6AFE00B56055 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8E965FDC167A6F8000B56055 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		8E965FDE167A76B900B56055 /* watermark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = watermark.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +105,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E965FD3167A562000B56055 /* AssetsLibrary.framework in Frameworks */,
+				8E965FDD167A6F8000B56055 /* CoreMedia.framework in Frameworks */,
+				8E965FDB167A6AFE00B56055 /* QuartzCore.framework in Frameworks */,
 				8E000C28167A3BAD00907361 /* AVFoundation.framework in Frameworks */,
 				8E000C26167A355B00907361 /* MobileCoreServices.framework in Frameworks */,
 				8E000C24167A355500907361 /* SystemConfiguration.framework in Frameworks */,
@@ -118,7 +123,6 @@
 		8E000B13167A249C00907361 = {
 			isa = PBXGroup;
 			children = (
-				8E965FD2167A562000B56055 /* AssetsLibrary.framework */,
 				8E000B28167A249C00907361 /* Shelby Oracle */,
 				8E000BAB167A2DFF00907361 /* Third Party Libraries */,
 				8E000B21167A249C00907361 /* Frameworks */,
@@ -137,6 +141,8 @@
 		8E000B21167A249C00907361 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8E965FDC167A6F8000B56055 /* CoreMedia.framework */,
+				8E965FDA167A6AFE00B56055 /* QuartzCore.framework */,
 				8E965FD4167A562400B56055 /* AssetsLibrary.framework */,
 				8E000C27167A3BAD00907361 /* AVFoundation.framework */,
 				8E000C25167A355B00907361 /* MobileCoreServices.framework */,
@@ -228,6 +234,7 @@
 		8E000BA9167A2BA700907361 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				8E965FDE167A76B900B56055 /* watermark.png */,
 				8E000B34167A249C00907361 /* Default.png */,
 				8E000B36167A249C00907361 /* Default@2x.png */,
 				8E000B38167A249C00907361 /* Default-568h@2x.png */,
@@ -339,6 +346,7 @@
 				8E000B56167A265E00907361 /* LoginViewController.xib in Resources */,
 				8E000B9B167A26D200907361 /* RollViewController.xib in Resources */,
 				8E965FC9167A460800B56055 /* MediaViewController.xib in Resources */,
+				8E965FDF167A76B900B56055 /* watermark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
