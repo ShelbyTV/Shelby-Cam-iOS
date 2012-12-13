@@ -11,5 +11,8 @@
 #define kAPIShelbyGetRollFrames             @"https://api.shelby.tv/v1/roll/%@/frames?auth_token=%@"
 #define kAPIShelbyGetMoreRollFrames         @"https://api.shelby.tv/v1/roll/%@/frames?auth_token=%@&skip=%@&limit=20"
 
+/// Observer Constants
+#define kShelbyUserDidAuthenticate          @"Shelby User Did Authenticate"
+
 /// NSUserDefault Constants
-#define kShelbyAuthToken    @"Shelby Authorization Token"
+#define kShelbyAuthToken                    @"Shelby Authorization Token"

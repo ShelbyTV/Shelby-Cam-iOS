@@ -15,9 +15,14 @@
     #import <Foundation/Foundation.h>
     #import <SystemConfiguration/SystemConfiguration.h>
     #import <MobileCoreServices/MobileCoreServices.h>
+    #import <AVFoundation/AVFoundation.h>
+    #import <AssetsLibrary/AssetsLibrary.h>
 
     // Third party Libraries
     #import "AFNetworking.h"
+
+    // Models
+    #import "AppDelegate.h"
 
     // Controllers
     #import "ShelbyAPIClient.h"

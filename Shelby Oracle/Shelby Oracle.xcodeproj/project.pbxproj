@@ -16,8 +16,7 @@
 		8E000B35167A249C00907361 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E000B34167A249C00907361 /* Default.png */; };
 		8E000B37167A249C00907361 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E000B36167A249C00907361 /* Default@2x.png */; };
 		8E000B39167A249C00907361 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E000B38167A249C00907361 /* Default-568h@2x.png */; };
-		8E000B3C167A249C00907361 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E000B3B167A249C00907361 /* CameraViewController.m */; };
-		8E000B3F167A249C00907361 /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E000B3D167A249C00907361 /* CameraViewController.xib */; };
+		8E000B3C167A249C00907361 /* MediaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E000B3B167A249C00907361 /* MediaViewController.m */; };
 		8E000B50167A25CC00907361 /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E000B4E167A25CC00907361 /* UploadViewController.m */; };
 		8E000B51167A25CC00907361 /* UploadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E000B4F167A25CC00907361 /* UploadViewController.xib */; };
 		8E000B55167A265E00907361 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E000B53167A265E00907361 /* LoginViewController.m */; };
@@ -36,6 +35,10 @@
 		8E000C00167A2FC600907361 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E000BC2167A2FC500907361 /* UIImageView+AFNetworking.m */; };
 		8E000C24167A355500907361 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E000C23167A355500907361 /* SystemConfiguration.framework */; };
 		8E000C26167A355B00907361 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E000C25167A355B00907361 /* MobileCoreServices.framework */; };
+		8E000C28167A3BAD00907361 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E000C27167A3BAD00907361 /* AVFoundation.framework */; };
+		8E965FC9167A460800B56055 /* MediaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E965FC8167A460800B56055 /* MediaViewController.xib */; };
+		8E965FD3167A562000B56055 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E965FD2167A562000B56055 /* AssetsLibrary.framework */; };
+		8E965FD5167A562400B56055 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E965FD4167A562400B56055 /* AssetsLibrary.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,9 +55,8 @@
 		8E000B34167A249C00907361 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		8E000B36167A249C00907361 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		8E000B38167A249C00907361 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		8E000B3A167A249C00907361 /* CameraViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
-		8E000B3B167A249C00907361 /* CameraViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
-		8E000B3E167A249C00907361 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CameraViewController.xib; sourceTree = "<group>"; };
+		8E000B3A167A249C00907361 /* MediaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MediaViewController.h; sourceTree = "<group>"; };
+		8E000B3B167A249C00907361 /* MediaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MediaViewController.m; sourceTree = "<group>"; };
 		8E000B4D167A25CC00907361 /* UploadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
 		8E000B4E167A25CC00907361 /* UploadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
 		8E000B4F167A25CC00907361 /* UploadViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadViewController.xib; sourceTree = "<group>"; };
@@ -88,6 +90,10 @@
 		8E000BC2167A2FC500907361 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		8E000C23167A355500907361 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8E000C25167A355B00907361 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		8E000C27167A3BAD00907361 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		8E965FC8167A460800B56055 /* MediaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MediaViewController.xib; sourceTree = "<group>"; };
+		8E965FD2167A562000B56055 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		8E965FD4167A562400B56055 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,11 +101,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E965FD3167A562000B56055 /* AssetsLibrary.framework in Frameworks */,
+				8E000C28167A3BAD00907361 /* AVFoundation.framework in Frameworks */,
 				8E000C26167A355B00907361 /* MobileCoreServices.framework in Frameworks */,
 				8E000C24167A355500907361 /* SystemConfiguration.framework in Frameworks */,
 				8E000B23167A249C00907361 /* UIKit.framework in Frameworks */,
 				8E000B25167A249C00907361 /* Foundation.framework in Frameworks */,
 				8E000B27167A249C00907361 /* CoreGraphics.framework in Frameworks */,
+				8E965FD5167A562400B56055 /* AssetsLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +118,7 @@
 		8E000B13167A249C00907361 = {
 			isa = PBXGroup;
 			children = (
+				8E965FD2167A562000B56055 /* AssetsLibrary.framework */,
 				8E000B28167A249C00907361 /* Shelby Oracle */,
 				8E000BAB167A2DFF00907361 /* Third Party Libraries */,
 				8E000B21167A249C00907361 /* Frameworks */,
@@ -127,6 +137,8 @@
 		8E000B21167A249C00907361 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8E965FD4167A562400B56055 /* AssetsLibrary.framework */,
+				8E000C27167A3BAD00907361 /* AVFoundation.framework */,
 				8E000C25167A355B00907361 /* MobileCoreServices.framework */,
 				8E000C23167A355500907361 /* SystemConfiguration.framework */,
 				8E000B22167A249C00907361 /* UIKit.framework */,
@@ -164,8 +176,8 @@
 		8E000B45167A24B100907361 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				8E000B3A167A249C00907361 /* CameraViewController.h */,
-				8E000B3B167A249C00907361 /* CameraViewController.m */,
+				8E000B3A167A249C00907361 /* MediaViewController.h */,
+				8E000B3B167A249C00907361 /* MediaViewController.m */,
 				8E000B52167A265E00907361 /* LoginViewController.h */,
 				8E000B53167A265E00907361 /* LoginViewController.m */,
 				8E000B4D167A25CC00907361 /* UploadViewController.h */,
@@ -179,8 +191,8 @@
 		8E000B46167A24BB00907361 /* NIBs */ = {
 			isa = PBXGroup;
 			children = (
-				8E000B3D167A249C00907361 /* CameraViewController.xib */,
 				8E000B54167A265E00907361 /* LoginViewController.xib */,
+				8E965FC8167A460800B56055 /* MediaViewController.xib */,
 				8E000B99167A26D200907361 /* RollViewController.xib */,
 				8E000B4F167A25CC00907361 /* UploadViewController.xib */,
 			);
@@ -323,10 +335,10 @@
 				8E000B35167A249C00907361 /* Default.png in Resources */,
 				8E000B37167A249C00907361 /* Default@2x.png in Resources */,
 				8E000B39167A249C00907361 /* Default-568h@2x.png in Resources */,
-				8E000B3F167A249C00907361 /* CameraViewController.xib in Resources */,
 				8E000B51167A25CC00907361 /* UploadViewController.xib in Resources */,
 				8E000B56167A265E00907361 /* LoginViewController.xib in Resources */,
 				8E000B9B167A26D200907361 /* RollViewController.xib in Resources */,
+				8E965FC9167A460800B56055 /* MediaViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,7 +351,7 @@
 			files = (
 				8E000B2F167A249C00907361 /* main.m in Sources */,
 				8E000B33167A249C00907361 /* AppDelegate.m in Sources */,
-				8E000B3C167A249C00907361 /* CameraViewController.m in Sources */,
+				8E000B3C167A249C00907361 /* MediaViewController.m in Sources */,
 				8E000B50167A25CC00907361 /* UploadViewController.m in Sources */,
 				8E000B55167A265E00907361 /* LoginViewController.m in Sources */,
 				8E000B9A167A26D200907361 /* RollViewController.m in Sources */,
@@ -365,14 +377,6 @@
 				8E000B2C167A249C00907361 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		8E000B3D167A249C00907361 /* CameraViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8E000B3E167A249C00907361 /* en */,
-			);
-			name = CameraViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -469,6 +473,7 @@
 				8E000B44167A249C00907361 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

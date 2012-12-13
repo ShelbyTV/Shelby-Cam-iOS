@@ -8,6 +8,7 @@
 
 #import "ShelbyAPIClient.h"
 
+
 @implementation ShelbyAPIClient
 
 + (void)postAuthenticationWithEmail:(NSString*)email andPassword:(NSString*)password
@@ -23,9 +24,15 @@
         
         if ( response.statusCode == 200 ) {
          
+            DLog(@"Login Successful");
+            
             NSArray *responseArray = [JSON objectForKey:@"result"];
             NSString *authToken = [responseArray valueForKey:@"authentication_token"];
             [[NSUserDefaults standardUserDefaults] setValue:authToken forKey:kShelbyAuthToken];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:kShelbyUserDidAuthenticate
+                                                                object:nil];
             
         }
         

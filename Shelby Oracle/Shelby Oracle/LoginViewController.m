@@ -53,7 +53,6 @@
 #pragma mark - Action Methods
 - (IBAction)loginButtonAction:(id)sender
 {
-    
     // Resign first responders
     if ( self.emailField.isFirstResponder ) [self.emailField resignFirstResponder];
     if ( self.passwordField.isFirstResponder ) [self.passwordField resignFirstResponder];

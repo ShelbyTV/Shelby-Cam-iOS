@@ -7,34 +7,50 @@
 //
 
 #import "AppDelegate.h"
-
-#import "CameraViewController.h"
+#import "MediaViewController.h"
 #import "LoginViewController.h"
 #import "RollViewController.h"
 
-@implementation AppDelegate
+@interface AppDelegate ()
+@property (strong, nonatomic) LoginViewController *loginViewController;
 
+- (void)setupObservers;
+- (void)userDidAuthenticate:(NSNotification*)notification;
+
+@end
+
+@implementation AppDelegate
+@synthesize tabBarController = _tabBarController;
+@synthesize loginViewController = _loginViewController;
+
+#pragma mark - UIApplicationDelegate Methods
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    // Build Window and rootView
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    CameraViewController *cameraViewController = [[CameraViewController alloc] initWithNibName:@"CameraViewController" bundle:nil];
+    MediaViewController *mediaViewController = [[MediaViewController alloc] initWithNibName:@"MediaViewController" bundle:nil];
     RollViewController *rollViewController = [[RollViewController alloc] initWithNibName:@"RollViewController" bundle:nil];
     self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = @[cameraViewController, rollViewController];
+    self.tabBarController.viewControllers = @[mediaViewController, rollViewController];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     
     if ( ![[NSUserDefaults standardUserDefaults] objectForKey:kShelbyAuthToken] ) {
         
-        LoginViewController *loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-        [self.window.rootViewController presentViewController:loginViewController animated:YES completion:nil];
+        self.loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+        [self.window.rootViewController presentViewController:_loginViewController animated:YES completion:nil];
         
     } else {
         
          // User Authenticated - do nothing.
         
     }
+    
+    
+    // Add Observers
+    [self setupObservers];
     
     return YES;
 }
@@ -64,6 +80,20 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - Private Methods
+- (void)setupObservers
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(userDidAuthenticate:)
+                                                 name:kShelbyUserDidAuthenticate
+                                               object:nil];
+}
+
+- (void)userDidAuthenticate:(NSNotification *)notification
+{
+    if ( _loginViewController ) [self.loginViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
