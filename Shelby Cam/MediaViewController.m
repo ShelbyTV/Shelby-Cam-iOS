@@ -14,10 +14,13 @@
 
 @property (strong, nonatomic) AppDelegate *appDelegate;
 @property (strong, nonatomic) UIImagePickerController *pickerController;
-@property (strong, nonatomic) AVCaptureMovieFileOutput *movieFileOutput;
 @property (strong, nonatomic) AVCaptureSession *session;
+@property (strong, nonatomic) AVCaptureMovieFileOutput *movieFileOutput;
 @property (strong, nonatomic) UIView *recordVideoView;
 @property (strong, nonatomic) ProcessingVideoView *processingVideoView;
+@property (strong, nonatomic) UITapGestureRecognizer *startRecordingRecognizer;
+@property (strong, nonatomic) UITapGestureRecognizer *stopRecordingRecognizer;
+
 
 - (void)stopRecording;
 - (void)addWatermarkForMovieFile:(NSURL*)url;
@@ -33,6 +36,8 @@
 @synthesize session = _session;
 @synthesize recordVideoView = _recordVideoView;
 @synthesize processingVideoView = _processingVideoView;
+@synthesize startRecordingRecognizer = _startRecordingRecognizer;
+@synthesize stopRecordingRecognizer = _stopRecordingRecognizer;
 @synthesize tapToStartImageView = _tapToStartImageView;
 @synthesize toggleLightButton = _toggleLightButton;
 @synthesize flipCameraButton = _flipCameraButton;
@@ -53,17 +58,6 @@
     self.presentUserRollButton = nil;
 }
 
-#pragma mark - Initialization Methods
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        self.title = @"Record";
-    }
-    
-    return self;
-}
-
 #pragma mark - View Lifecycle Methods
 - (void)viewDidLoad
 {
@@ -71,10 +65,10 @@
     
     self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(recordVideoButtonAction:)];
-    [tapGestureRecognizer setNumberOfTapsRequired:1];
-    [self.tapToStartImageView addGestureRecognizer:tapGestureRecognizer];
-    [self.view addGestureRecognizer:tapGestureRecognizer];
+    // Add TapGestureRecognizer to allow for recording to begin
+    self.startRecordingRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(recordVideoButtonAction:)];
+    [self.startRecordingRecognizer setNumberOfTapsRequired:1];
+    [self.view addGestureRecognizer:_startRecordingRecognizer];
     
     // If navigationBar isn't hidden, hide it.
     if ( NO == self.navigationController.navigationBarHidden ) {
@@ -121,16 +115,27 @@
     [self.recordNewVideoButton removeTarget:self action:@selector(recordVideoButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.recordNewVideoButton addTarget:self action:@selector(stopRecording) forControlEvents:UIControlEventTouchUpInside];
     
+    // Add TapGestureRecognizer to allow for recording to end
+    [self.view removeGestureRecognizer:_startRecordingRecognizer];
+    self.stopRecordingRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(stopRecording)];
+    [self.stopRecordingRecognizer setNumberOfTapsRequired:1];
+    [self.view addGestureRecognizer:_stopRecordingRecognizer];
+    
     // Initialize AVCaptureSession
     self.session = [[AVCaptureSession alloc] init];
     
     // Configure AVCaptureSession
     [self.session beginConfiguration];
     
-    // Add Device
-    AVCaptureDevice *device =[AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    AVCaptureDeviceInput *deviceInput = [AVCaptureDeviceInput deviceInputWithDevice:device error:nil];
-    [self.session addInput:deviceInput];
+    // Add Video Input from Device
+    AVCaptureDevice *videoDevice =[AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    AVCaptureDeviceInput *videoDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:videoDevice error:nil];
+    [self.session addInput:videoDeviceInput];
+    
+    // Add Audio Input from Device
+    AVCaptureDevice *audioDevice =[AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeAudio];
+    AVCaptureDeviceInput *audioDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:audioDevice error:nil];
+    [self.session addInput:audioDeviceInput];
     
     // Add Still Image Output
     AVCaptureStillImageOutput *stillImageOutput = [[AVCaptureStillImageOutput alloc] init];
@@ -141,6 +146,10 @@
     // Add Video File Output
     self.movieFileOutput = [[AVCaptureMovieFileOutput alloc] init];
     [self.session addOutput:_movieFileOutput];
+    
+    // Add Audio File Output
+    AVCaptureAudioDataOutput * audioOutput = [[AVCaptureAudioDataOutput alloc] init];
+    [self.session addOutput:audioOutput];
 
     [self.session commitConfiguration];
 
@@ -170,8 +179,6 @@
     // Present Rolls Modally
 }
 
-
-
 #pragma mark - Private Methods
 - (void)stopRecording
 {
@@ -189,11 +196,14 @@
     [self.processingVideoView setAlpha:0.67f];
     [self.view addSubview:_processingVideoView];
     
-    
     // Change Button
     [self.recordNewVideoButton setImage:[UIImage imageNamed:@"cameraOff"] forState:UIControlStateNormal];
     [self.recordNewVideoButton removeTarget:self action:@selector(stopRecording) forControlEvents:UIControlEventTouchUpInside];
     [self.recordNewVideoButton addTarget:self action:@selector(recordVideoButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    // Remove Recognizer
+    [self.view removeGestureRecognizer:_stopRecordingRecognizer];
+    
 }
 
 - (void)addWatermarkForMovieFile:(NSURL *)url
@@ -265,6 +275,11 @@
                                              [UIView animateWithDuration:1.0f animations:^{
                                                  [self.processingVideoView setAlpha:0.0f];
                                              } completion:^(BOOL finished) {
+                                                 
+                                                 // Add TapGestureRecognizer to allow for recording to begin (next time user decides to tap)
+                                                 self.startRecordingRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(recordVideoButtonAction:)];
+                                                 [self.startRecordingRecognizer setNumberOfTapsRequired:1];
+                                                 [self.view addGestureRecognizer:_startRecordingRecognizer];
                                                  
                                                  // Remove views
                                                  [self.recordVideoView removeFromSuperview];
