@@ -62,6 +62,13 @@
 {
     [super viewDidLoad];
     self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
+
+    // If navigationBar isn't hidden, hide it.
+    if ( NO == self.navigationController.navigationBarHidden ) {
+        [self.navigationController setNavigationBarHidden:YES];
+    }
+    
 }
 
 
@@ -144,9 +151,6 @@
     // Stop recording
     [self.movieFileOutput stopRecording];
     [self.session stopRunning];
-    [self.recordVideoView removeFromSuperview];
-    self.movieFileOutput = nil;
-    self.session = nil;
     
     DLog(@"Ended Recording New Video");
     
@@ -233,11 +237,22 @@
                                              [UIView animateWithDuration:1.0f animations:^{
                                                  [self.processingVideoView setAlpha:0.0f];
                                              } completion:^(BOOL finished) {
+                                                 
+                                                 // Remove views
+                                                 [self.recordVideoView removeFromSuperview];
                                                  [self.processingVideoView removeFromSuperview];
+                                                 
+                                                 // Release AV objects
+                                                 self.movieFileOutput = nil;
+                                                 self.session = nil;
+                                                 
+                                                 // Push Upload ViewController
+                                                 UploadViewController *uploadViewController = [[UploadViewController alloc] initWithNibName:@"UploadViewController" bundle:nil];
+                                                 [self.navigationController pushViewController:uploadViewController animated:YES];
+                                                 
                                              }];
                                              
-//                                             UploadViewController *uploadViewController = [[UploadViewController alloc] initWithNibName:@"UploadViewController" bundle:nil];
-//                                             [self.pickerController pushViewController:uploadViewController animated:YES];
+                                            
                                          }];
          }
          

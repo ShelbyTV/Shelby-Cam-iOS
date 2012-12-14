@@ -8,10 +8,12 @@
 
 #import "AppDelegate.h"
 #import "MediaViewController.h"
-#import "LoginViewController.h"
+#import "ShelbyLoginViewController.h"
+#import "GTMOAuth2ViewControllerTouch.h"
 
 @interface AppDelegate ()
-@property (strong, nonatomic) LoginViewController *loginViewController;
+@property (strong, nonatomic) UINavigationController *navigationController;
+@property (strong, nonatomic) ShelbyLoginViewController *shelbyLoginViewController;
 
 - (void)setupObservers;
 - (void)userDidAuthenticate:(NSNotification*)notification;
@@ -19,7 +21,8 @@
 @end
 
 @implementation AppDelegate
-@synthesize loginViewController = _loginViewController;
+@synthesize navigationController = _navigationController;
+@synthesize shelbyLoginViewController = _shelbyLoginViewController;
 
 #pragma mark - UIApplicationDelegate Methods
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -30,15 +33,16 @@
     
     // Build Window and rootView
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
     MediaViewController *mediaViewController = [[MediaViewController alloc] initWithNibName:@"MediaViewController" bundle:nil];
-    self.window.rootViewController = mediaViewController;
+    self.navigationController = [[UINavigationController alloc] initWithRootViewController:mediaViewController];
+    [self.navigationController setNavigationBarHidden:YES];
+    self.window.rootViewController = _navigationController;
     [self.window makeKeyAndVisible];
     
     if ( ![[NSUserDefaults standardUserDefaults] objectForKey:kShelbyAuthToken] ) {
         
-        self.loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-        [self.window.rootViewController presentViewController:_loginViewController animated:YES completion:nil];
+        self.shelbyLoginViewController = [[ShelbyLoginViewController alloc] initWithNibName:@"ShelbyLoginViewController" bundle:nil];
+        [self.window.rootViewController presentViewController:_shelbyLoginViewController animated:YES completion:nil];
         
     } else {
         
@@ -87,7 +91,7 @@
 
 - (void)userDidAuthenticate:(NSNotification *)notification
 {
-    if ( _loginViewController ) [self.loginViewController dismissViewControllerAnimated:YES completion:nil];
+    if ( _shelbyLoginViewController ) [self.shelbyLoginViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

@@ -1,18 +1,18 @@
 //
-//  LoginViewController.m
+//  ShelbyLoginViewController.m
 //  Shelby Chat
 //
 //  Created by Arthur Ariel Sabintsev on 12/13/12.
 //  Copyright (c) 2012 Arthur Ariel Sabintsev. All rights reserved.
 //
 
-#import "LoginViewController.h"
+#import "ShelbyLoginViewController.h"
 
-@interface LoginViewController ()
+@interface ShelbyLoginViewController ()
 
 @end
 
-@implementation LoginViewController
+@implementation ShelbyLoginViewController
 @synthesize emailField = _emailField;
 @synthesize passwordField = _passwordField;
 @synthesize loginButton = _loginButton;

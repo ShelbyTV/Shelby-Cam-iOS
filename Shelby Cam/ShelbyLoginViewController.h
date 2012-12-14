@@ -1,5 +1,5 @@
 //
-//  LoginViewController.h
+//  ShelbyLoginViewController.h
 //  Shelby Chat
 //
 //  Created by Arthur Ariel Sabintsev on 12/13/12.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginViewController : UIViewController <UITextFieldDelegate>
+@interface ShelbyLoginViewController : UIViewController <UITextFieldDelegate>
 
 @property (strong, nonatomic) IBOutlet UITextField *emailField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordField;
