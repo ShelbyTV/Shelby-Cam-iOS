@@ -44,6 +44,7 @@
 #pragma mark - Memory Management Methods
 - (void)dealloc
 {
+    self.tapToStartImageView = nil;
     self.toggleLightButton = nil;
     self.flipCameraButton = nil;
     self.settingsButton = nil;
@@ -73,6 +74,7 @@
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(recordVideoButtonAction:)];
     [tapGestureRecognizer setNumberOfTapsRequired:1];
     [self.tapToStartImageView addGestureRecognizer:tapGestureRecognizer];
+    [self.view addGestureRecognizer:tapGestureRecognizer];
     
     // If navigationBar isn't hidden, hide it.
     if ( NO == self.navigationController.navigationBarHidden ) {
@@ -143,7 +145,7 @@
     [self.session commitConfiguration];
 
     // Add Video Layer
-    CGRect videoCaptureFrame = CGRectMake(0.0f, 34.0f, 320.0f, 436.0f);
+    CGRect videoCaptureFrame = CGRectMake(0.0f, 20.0f, 320.0f, 376.0f);
     AVCaptureVideoPreviewLayer *captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:_session];
     [captureVideoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
     [captureVideoPreviewLayer setFrame:videoCaptureFrame];

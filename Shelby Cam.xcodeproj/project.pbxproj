@@ -55,10 +55,10 @@
 		8E4268FF167B7CE500D83A8E /* topBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E4268EB167B7CE500D83A8E /* topBar.png */; };
 		8E426900167B7CE500D83A8E /* topBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E4268EC167B7CE500D83A8E /* topBar@2x.png */; };
 		8E426901167B7CE500D83A8E /* watermark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E4268ED167B7CE500D83A8E /* watermark.png */; };
-		8E426904167B7D9000D83A8E /* lightOff_2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E426902167B7D9000D83A8E /* lightOff_2x.png */; };
 		8E426905167B7D9000D83A8E /* lightOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E426903167B7D9000D83A8E /* lightOff.png */; };
 		8E426908167B7FA500D83A8E /* tapToStart.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E426906167B7FA500D83A8E /* tapToStart.png */; };
 		8E426909167B7FA500D83A8E /* tapToStart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E426907167B7FA500D83A8E /* tapToStart@2x.png */; };
+		8E42690F167B8A3A00D83A8E /* lightOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E42690E167B8A3A00D83A8E /* lightOff@2x.png */; };
 		8E69C09E167AA391000444EB /* ShelbyLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E3B7CCB167AA15F00CF09C8 /* ShelbyLoginViewController.xib */; };
 		8E69C09F167AA391000444EB /* MediaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E3B7CCF167AA15F00CF09C8 /* MediaViewController.xib */; };
 		8E69C0A0167AA391000444EB /* UploadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E3B7CD6167AA15F00CF09C8 /* UploadViewController.xib */; };
@@ -154,10 +154,10 @@
 		8E4268EB167B7CE500D83A8E /* topBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topBar.png; sourceTree = "<group>"; };
 		8E4268EC167B7CE500D83A8E /* topBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "topBar@2x.png"; sourceTree = "<group>"; };
 		8E4268ED167B7CE500D83A8E /* watermark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = watermark.png; sourceTree = "<group>"; };
-		8E426902167B7D9000D83A8E /* lightOff_2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightOff_2x.png; sourceTree = "<group>"; };
 		8E426903167B7D9000D83A8E /* lightOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightOff.png; sourceTree = "<group>"; };
 		8E426906167B7FA500D83A8E /* tapToStart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tapToStart.png; sourceTree = "<group>"; };
 		8E426907167B7FA500D83A8E /* tapToStart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tapToStart@2x.png"; sourceTree = "<group>"; };
+		8E42690E167B8A3A00D83A8E /* lightOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lightOff@2x.png"; sourceTree = "<group>"; };
 		8E8A542D167AA55700F42D4A /* ProcessingVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProcessingVideoView.h; sourceTree = "<group>"; };
 		8E8A542E167AA55700F42D4A /* ProcessingVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProcessingVideoView.m; sourceTree = "<group>"; };
 		8E8A5431167AA56900F42D4A /* ProcessingVideoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProcessingVideoView.xib; sourceTree = "<group>"; };
@@ -390,8 +390,8 @@
 				8E4268DF167B7CE500D83A8E /* cameraOn@2x.png */,
 				8E4268E0167B7CE500D83A8E /* flipCamera.png */,
 				8E4268E1167B7CE500D83A8E /* flipCamera@2x.png */,
-				8E426902167B7D9000D83A8E /* lightOff_2x.png */,
 				8E426903167B7D9000D83A8E /* lightOff.png */,
+				8E42690E167B8A3A00D83A8E /* lightOff@2x.png */,
 				8E4268E3167B7CE500D83A8E /* lightOn.png */,
 				8E4268E4167B7CE500D83A8E /* lightOn@2x.png */,
 				8E4268E5167B7CE500D83A8E /* list.png */,
@@ -546,10 +546,10 @@
 				8E4268FF167B7CE500D83A8E /* topBar.png in Resources */,
 				8E426900167B7CE500D83A8E /* topBar@2x.png in Resources */,
 				8E426901167B7CE500D83A8E /* watermark.png in Resources */,
-				8E426904167B7D9000D83A8E /* lightOff_2x.png in Resources */,
 				8E426905167B7D9000D83A8E /* lightOff.png in Resources */,
 				8E426908167B7FA500D83A8E /* tapToStart.png in Resources */,
 				8E426909167B7FA500D83A8E /* tapToStart@2x.png in Resources */,
+				8E42690F167B8A3A00D83A8E /* lightOff@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
