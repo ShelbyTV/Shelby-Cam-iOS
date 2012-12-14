@@ -85,16 +85,7 @@
     
     if ( ![self videoDevice] ) self.videoDevice =[AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
     
-    if ( self.videoDevice.torchMode == AVCaptureTorchModeOff ) {
-        
-        [self.videoDevice lockForConfiguration:nil];
-        [self.videoDevice setTorchMode:AVCaptureTorchModeOn];
-        [self.videoDevice setFlashMode:AVCaptureFlashModeOn];
-        [self.videoDevice unlockForConfiguration];
-        
-        [self.toggleLightButton setImage:[UIImage imageNamed:@"lightOn"] forState:UIControlStateNormal];
-        
-    } else {
+    if ( self.videoDevice.torchMode == AVCaptureTorchModeOn ) { // If light/torch is on
         
         [self.videoDevice lockForConfiguration:nil];
         [self.videoDevice setTorchMode:AVCaptureTorchModeOff];
@@ -102,6 +93,16 @@
         [self.videoDevice unlockForConfiguration];
         
         [self.toggleLightButton setImage:[UIImage imageNamed:@"lightOff"] forState:UIControlStateNormal];
+        
+    } else { // If light/torch is off
+        
+        [self.videoDevice lockForConfiguration:nil];
+        [self.videoDevice setTorchMode:AVCaptureTorchModeOn];
+        [self.videoDevice setFlashMode:AVCaptureFlashModeOn];
+        [self.videoDevice unlockForConfiguration];
+        
+        [self.toggleLightButton setImage:[UIImage imageNamed:@"lightOn"] forState:UIControlStateNormal];
+
     }
 
 }
@@ -212,8 +213,11 @@
     // Stop recording
     [self.movieFileOutput stopRecording];
     [self.session stopRunning];
-    
+
     DLog(@"Ended Recording New Video");
+
+    // Turn of flash/torch if it's on
+    if ( self.videoDevice.torchMode == AVCaptureTorchModeOn ) [self toggleLightButtonAction:self];
     
     // Processing Screen
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ProcessingVideoView" owner:self options:nil];
@@ -221,7 +225,7 @@
     [self.processingVideoView.indicator startAnimating];
     [self.processingVideoView setAlpha:0.67f];
     [self.view addSubview:_processingVideoView];
-    
+
     // Change Button
     [self.recordNewVideoButton setImage:[UIImage imageNamed:@"cameraOff"] forState:UIControlStateNormal];
     [self.recordNewVideoButton removeTarget:self action:@selector(stopRecording) forControlEvents:UIControlEventTouchUpInside];
