@@ -318,7 +318,7 @@
                                              DLog(@"Finished Processing Video");
                                              
                                              [self.processingVideoView.indicator stopAnimating];
-                                             [UIView animateWithDuration:1.0f animations:^{
+                                             [UIView animateWithDuration:0.5f animations:^{
                                                  [self.processingVideoView setAlpha:0.0f];
                                              } completion:^(BOOL finished) {
                                                  
