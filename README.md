@@ -1,4 +1,4 @@
-Shelby-Seez-iOS
+Shelby-Cam-iOS
 ===============
 
-A curation tool for iOS
+A curation tool for iPhone.

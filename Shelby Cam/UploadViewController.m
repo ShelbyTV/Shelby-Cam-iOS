@@ -1,25 +1,24 @@
 //
-//  RollViewController.m
-//  Shelby Oracle
+//  UploadViewController.m
+//  Shelby Chat
 //
 //  Created by Arthur Ariel Sabintsev on 12/13/12.
 //  Copyright (c) 2012 Arthur Ariel Sabintsev. All rights reserved.
 //
 
-#import "RollViewController.h"
+#import "UploadViewController.h"
 
-@interface RollViewController ()
+@interface UploadViewController ()
 
 @end
 
-@implementation RollViewController
+@implementation UploadViewController
 
-#pragma mark - Initialization Methods
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.title = @"My Roll";
+        // Custom initialization
     }
     return self;
 }

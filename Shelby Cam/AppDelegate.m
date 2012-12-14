@@ -1,6 +1,6 @@
 //
 //  AppDelegate.m
-//  Shelby Oracle
+//  Shelby Chat
 //
 //  Created by Arthur Ariel Sabintsev on 12/13/12.
 //  Copyright (c) 2012 Arthur Ariel Sabintsev. All rights reserved.
@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "MediaViewController.h"
 #import "LoginViewController.h"
-#import "RollViewController.h"
 
 @interface AppDelegate ()
 @property (strong, nonatomic) LoginViewController *loginViewController;
@@ -20,21 +19,20 @@
 @end
 
 @implementation AppDelegate
-@synthesize tabBarController = _tabBarController;
 @synthesize loginViewController = _loginViewController;
 
 #pragma mark - UIApplicationDelegate Methods
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
+    // Add Observers
+    [self setupObservers];
+    
     // Build Window and rootView
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     MediaViewController *mediaViewController = [[MediaViewController alloc] initWithNibName:@"MediaViewController" bundle:nil];
-    RollViewController *rollViewController = [[RollViewController alloc] initWithNibName:@"RollViewController" bundle:nil];
-    self.tabBarController = [[UITabBarController alloc] init];
-    self.tabBarController.viewControllers = @[mediaViewController, rollViewController];
-    self.window.rootViewController = self.tabBarController;
+    self.window.rootViewController = mediaViewController;
     [self.window makeKeyAndVisible];
     
     if ( ![[NSUserDefaults standardUserDefaults] objectForKey:kShelbyAuthToken] ) {
@@ -47,11 +45,7 @@
          // User Authenticated - do nothing.
         
     }
-    
-    
-    // Add Observers
-    [self setupObservers];
-    
+
     return YES;
 }
 

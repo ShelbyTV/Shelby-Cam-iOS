@@ -1,0 +1,521 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8E3B7C56167AA08500CF09C8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3B7C55167AA08500CF09C8 /* UIKit.framework */; };
+		8E3B7C58167AA08500CF09C8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3B7C57167AA08500CF09C8 /* Foundation.framework */; };
+		8E3B7C5A167AA08500CF09C8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3B7C59167AA08500CF09C8 /* CoreGraphics.framework */; };
+		8E3B7C60167AA08500CF09C8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8E3B7C5E167AA08500CF09C8 /* InfoPlist.strings */; };
+		8E3B7C62167AA08500CF09C8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3B7C61167AA08500CF09C8 /* main.m */; };
+		8E3B7C68167AA08500CF09C8 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E3B7C67167AA08500CF09C8 /* Default.png */; };
+		8E3B7C6A167AA08500CF09C8 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E3B7C69167AA08500CF09C8 /* Default@2x.png */; };
+		8E3B7C6C167AA08500CF09C8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E3B7C6B167AA08500CF09C8 /* Default-568h@2x.png */; };
+		8E3B7C9A167AA10B00CF09C8 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3B7C7C167AA10B00CF09C8 /* AFHTTPClient.m */; };
+		8E3B7C9B167AA10B00CF09C8 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3B7C7E167AA10B00CF09C8 /* AFHTTPRequestOperation.m */; };
+		8E3B7C9C167AA10B00CF09C8 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3B7C80167AA10B00CF09C8 /* AFImageRequestOperation.m */; };
+		8E3B7C9D167AA10B00CF09C8 /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3B7C82167AA10B00CF09C8 /* AFJSONRequestOperation.m */; };
+		8E3B7C9E167AA10B00CF09C8 /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3B7C84167AA10B00CF09C8 /* AFNetworkActivityIndicatorManager.m */; };
+		8E3B7C9F167AA10B00CF09C8 /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3B7C87167AA10B00CF09C8 /* AFPropertyListRequestOperation.m */; };
+		8E3B7CA0167AA10B00CF09C8 /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3B7C89167AA10B00CF09C8 /* AFURLConnectionOperation.m */; };
+		8E3B7CA1167AA10B00CF09C8 /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3B7C8B167AA10B00CF09C8 /* AFXMLRequestOperation.m */; };
+		8E3B7CA2167AA10B00CF09C8 /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3B7C8D167AA10B00CF09C8 /* UIImageView+AFNetworking.m */; };
+		8E3B7CDE167AA1D100CF09C8 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3B7CDD167AA1D100CF09C8 /* CoreMedia.framework */; };
+		8E3B7CE0167AA1D600CF09C8 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3B7CDF167AA1D600CF09C8 /* MobileCoreServices.framework */; };
+		8E3B7CE2167AA1DD00CF09C8 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3B7CE1167AA1DD00CF09C8 /* AssetsLibrary.framework */; };
+		8E3B7CE4167AA1EC00CF09C8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3B7CE3167AA1EC00CF09C8 /* Security.framework */; };
+		8E3B7CE6167AA1F200CF09C8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3B7CE5167AA1F200CF09C8 /* QuartzCore.framework */; };
+		8E3B7CE8167AA24700CF09C8 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3B7CE7167AA24700CF09C8 /* AVFoundation.framework */; };
+		8E3B7CEA167AA25300CF09C8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E3B7CE9167AA25300CF09C8 /* SystemConfiguration.framework */; };
+		8E3B7CEB167AA26F00CF09C8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3B7CC7167AA15F00CF09C8 /* AppDelegate.m */; };
+		8E3B7CEC167AA26F00CF09C8 /* ShelbyAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3B7CD3167AA15F00CF09C8 /* ShelbyAPIClient.m */; };
+		8E3B7CED167AA26F00CF09C8 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3B7CCA167AA15F00CF09C8 /* LoginViewController.m */; };
+		8E3B7CEE167AA26F00CF09C8 /* MediaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3B7CCE167AA15F00CF09C8 /* MediaViewController.m */; };
+		8E3B7CEF167AA26F00CF09C8 /* UploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E3B7CD5167AA15F00CF09C8 /* UploadViewController.m */; };
+		8E69C093167AA32C000444EB /* bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E69C088167AA32C000444EB /* bar.png */; };
+		8E69C094167AA32C000444EB /* bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E69C089167AA32C000444EB /* bar@2x.png */; };
+		8E69C095167AA32C000444EB /* cameraOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E69C08A167AA32C000444EB /* cameraOff.png */; };
+		8E69C096167AA32C000444EB /* cameraOff@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E69C08B167AA32C000444EB /* cameraOff@2x.png */; };
+		8E69C097167AA32C000444EB /* cameraOn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E69C08C167AA32C000444EB /* cameraOn.png */; };
+		8E69C098167AA32C000444EB /* cameraOn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E69C08D167AA32C000444EB /* cameraOn@2x.png */; };
+		8E69C099167AA32C000444EB /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E69C08E167AA32C000444EB /* list.png */; };
+		8E69C09A167AA32C000444EB /* list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E69C08F167AA32C000444EB /* list@2x.png */; };
+		8E69C09B167AA32C000444EB /* roll.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E69C090167AA32C000444EB /* roll.png */; };
+		8E69C09C167AA32C000444EB /* roll@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E69C091167AA32C000444EB /* roll@2x.png */; };
+		8E69C09D167AA32C000444EB /* watermark.png in Resources */ = {isa = PBXBuildFile; fileRef = 8E69C092167AA32C000444EB /* watermark.png */; };
+		8E69C09E167AA391000444EB /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E3B7CCB167AA15F00CF09C8 /* LoginViewController.xib */; };
+		8E69C09F167AA391000444EB /* MediaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E3B7CCF167AA15F00CF09C8 /* MediaViewController.xib */; };
+		8E69C0A0167AA391000444EB /* UploadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E3B7CD6167AA15F00CF09C8 /* UploadViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		8E3B7C51167AA08500CF09C8 /* Shelby Cam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shelby Cam.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E3B7C55167AA08500CF09C8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		8E3B7C57167AA08500CF09C8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		8E3B7C59167AA08500CF09C8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		8E3B7C5D167AA08500CF09C8 /* Shelby Cam-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Shelby Cam-Info.plist"; sourceTree = "<group>"; };
+		8E3B7C5F167AA08500CF09C8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8E3B7C61167AA08500CF09C8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8E3B7C63167AA08500CF09C8 /* Shelby Cam-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Shelby Cam-Prefix.pch"; sourceTree = "<group>"; };
+		8E3B7C67167AA08500CF09C8 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		8E3B7C69167AA08500CF09C8 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		8E3B7C6B167AA08500CF09C8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		8E3B7C7B167AA10B00CF09C8 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
+		8E3B7C7C167AA10B00CF09C8 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
+		8E3B7C7D167AA10B00CF09C8 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		8E3B7C7E167AA10B00CF09C8 /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
+		8E3B7C7F167AA10B00CF09C8 /* AFImageRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFImageRequestOperation.h; sourceTree = "<group>"; };
+		8E3B7C80167AA10B00CF09C8 /* AFImageRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFImageRequestOperation.m; sourceTree = "<group>"; };
+		8E3B7C81167AA10B00CF09C8 /* AFJSONRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFJSONRequestOperation.h; sourceTree = "<group>"; };
+		8E3B7C82167AA10B00CF09C8 /* AFJSONRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFJSONRequestOperation.m; sourceTree = "<group>"; };
+		8E3B7C83167AA10B00CF09C8 /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
+		8E3B7C84167AA10B00CF09C8 /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
+		8E3B7C85167AA10B00CF09C8 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		8E3B7C86167AA10B00CF09C8 /* AFPropertyListRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFPropertyListRequestOperation.h; sourceTree = "<group>"; };
+		8E3B7C87167AA10B00CF09C8 /* AFPropertyListRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFPropertyListRequestOperation.m; sourceTree = "<group>"; };
+		8E3B7C88167AA10B00CF09C8 /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
+		8E3B7C89167AA10B00CF09C8 /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
+		8E3B7C8A167AA10B00CF09C8 /* AFXMLRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFXMLRequestOperation.h; sourceTree = "<group>"; };
+		8E3B7C8B167AA10B00CF09C8 /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
+		8E3B7C8C167AA10B00CF09C8 /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
+		8E3B7C8D167AA10B00CF09C8 /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
+		8E3B7CC6167AA15F00CF09C8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		8E3B7CC7167AA15F00CF09C8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		8E3B7CC8167AA15F00CF09C8 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		8E3B7CC9167AA15F00CF09C8 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		8E3B7CCA167AA15F00CF09C8 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		8E3B7CCB167AA15F00CF09C8 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		8E3B7CCD167AA15F00CF09C8 /* MediaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MediaViewController.h; sourceTree = "<group>"; };
+		8E3B7CCE167AA15F00CF09C8 /* MediaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MediaViewController.m; sourceTree = "<group>"; };
+		8E3B7CCF167AA15F00CF09C8 /* MediaViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaViewController.xib; sourceTree = "<group>"; };
+		8E3B7CD2167AA15F00CF09C8 /* ShelbyAPIClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShelbyAPIClient.h; sourceTree = "<group>"; };
+		8E3B7CD3167AA15F00CF09C8 /* ShelbyAPIClient.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShelbyAPIClient.m; sourceTree = "<group>"; };
+		8E3B7CD4167AA15F00CF09C8 /* UploadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UploadViewController.h; sourceTree = "<group>"; };
+		8E3B7CD5167AA15F00CF09C8 /* UploadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UploadViewController.m; sourceTree = "<group>"; };
+		8E3B7CD6167AA15F00CF09C8 /* UploadViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadViewController.xib; sourceTree = "<group>"; };
+		8E3B7CDD167AA1D100CF09C8 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		8E3B7CDF167AA1D600CF09C8 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		8E3B7CE1167AA1DD00CF09C8 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		8E3B7CE3167AA1EC00CF09C8 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		8E3B7CE5167AA1F200CF09C8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8E3B7CE7167AA24700CF09C8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		8E3B7CE9167AA25300CF09C8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		8E69C088167AA32C000444EB /* bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bar.png; sourceTree = "<group>"; };
+		8E69C089167AA32C000444EB /* bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar@2x.png"; sourceTree = "<group>"; };
+		8E69C08A167AA32C000444EB /* cameraOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraOff.png; sourceTree = "<group>"; };
+		8E69C08B167AA32C000444EB /* cameraOff@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cameraOff@2x.png"; sourceTree = "<group>"; };
+		8E69C08C167AA32C000444EB /* cameraOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraOn.png; sourceTree = "<group>"; };
+		8E69C08D167AA32C000444EB /* cameraOn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cameraOn@2x.png"; sourceTree = "<group>"; };
+		8E69C08E167AA32C000444EB /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
+		8E69C08F167AA32C000444EB /* list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "list@2x.png"; sourceTree = "<group>"; };
+		8E69C090167AA32C000444EB /* roll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roll.png; sourceTree = "<group>"; };
+		8E69C091167AA32C000444EB /* roll@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roll@2x.png"; sourceTree = "<group>"; };
+		8E69C092167AA32C000444EB /* watermark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = watermark.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8E3B7C4E167AA08500CF09C8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E3B7CEA167AA25300CF09C8 /* SystemConfiguration.framework in Frameworks */,
+				8E3B7CE8167AA24700CF09C8 /* AVFoundation.framework in Frameworks */,
+				8E3B7CE6167AA1F200CF09C8 /* QuartzCore.framework in Frameworks */,
+				8E3B7CE4167AA1EC00CF09C8 /* Security.framework in Frameworks */,
+				8E3B7CE2167AA1DD00CF09C8 /* AssetsLibrary.framework in Frameworks */,
+				8E3B7CE0167AA1D600CF09C8 /* MobileCoreServices.framework in Frameworks */,
+				8E3B7CDE167AA1D100CF09C8 /* CoreMedia.framework in Frameworks */,
+				8E3B7C56167AA08500CF09C8 /* UIKit.framework in Frameworks */,
+				8E3B7C58167AA08500CF09C8 /* Foundation.framework in Frameworks */,
+				8E3B7C5A167AA08500CF09C8 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8E3B7C46167AA08500CF09C8 = {
+			isa = PBXGroup;
+			children = (
+				8E3B7C5B167AA08500CF09C8 /* Shelby Cam */,
+				8E3B7C54167AA08500CF09C8 /* Frameworks */,
+				8E3B7C52167AA08500CF09C8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8E3B7C52167AA08500CF09C8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8E3B7C51167AA08500CF09C8 /* Shelby Cam.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8E3B7C54167AA08500CF09C8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8E3B7CE9167AA25300CF09C8 /* SystemConfiguration.framework */,
+				8E3B7CE7167AA24700CF09C8 /* AVFoundation.framework */,
+				8E3B7CE5167AA1F200CF09C8 /* QuartzCore.framework */,
+				8E3B7CE3167AA1EC00CF09C8 /* Security.framework */,
+				8E3B7CE1167AA1DD00CF09C8 /* AssetsLibrary.framework */,
+				8E3B7CDF167AA1D600CF09C8 /* MobileCoreServices.framework */,
+				8E3B7CDD167AA1D100CF09C8 /* CoreMedia.framework */,
+				8E3B7C55167AA08500CF09C8 /* UIKit.framework */,
+				8E3B7C57167AA08500CF09C8 /* Foundation.framework */,
+				8E3B7C59167AA08500CF09C8 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8E3B7C5B167AA08500CF09C8 /* Shelby Cam */ = {
+			isa = PBXGroup;
+			children = (
+				8E3B7CD7167AA16300CF09C8 /* Models */,
+				8E3B7CDB167AA18D00CF09C8 /* Views */,
+				8E3B7CDC167AA19300CF09C8 /* Controllers */,
+				8E3B7CD9167AA17600CF09C8 /* View Controllers */,
+				8E3B7C78167AA10B00CF09C8 /* External Libraries */,
+				8E3B7C5C167AA08500CF09C8 /* Supporting Files */,
+				8E3B7CAE167AA12000CF09C8 /* Resources */,
+			);
+			path = "Shelby Cam";
+			sourceTree = "<group>";
+		};
+		8E3B7C5C167AA08500CF09C8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8E3B7CC8167AA15F00CF09C8 /* Constants.h */,
+				8E3B7C5D167AA08500CF09C8 /* Shelby Cam-Info.plist */,
+				8E3B7C5E167AA08500CF09C8 /* InfoPlist.strings */,
+				8E3B7C61167AA08500CF09C8 /* main.m */,
+				8E3B7C63167AA08500CF09C8 /* Shelby Cam-Prefix.pch */,
+				8E3B7C67167AA08500CF09C8 /* Default.png */,
+				8E3B7C69167AA08500CF09C8 /* Default@2x.png */,
+				8E3B7C6B167AA08500CF09C8 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8E3B7C78167AA10B00CF09C8 /* External Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				8E3B7C79167AA10B00CF09C8 /* AFNetworking */,
+			);
+			name = "External Libraries";
+			path = "../External Libraries";
+			sourceTree = "<group>";
+		};
+		8E3B7C79167AA10B00CF09C8 /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				8E3B7C7A167AA10B00CF09C8 /* AFNetworking */,
+			);
+			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		8E3B7C7A167AA10B00CF09C8 /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				8E3B7C7B167AA10B00CF09C8 /* AFHTTPClient.h */,
+				8E3B7C7C167AA10B00CF09C8 /* AFHTTPClient.m */,
+				8E3B7C7D167AA10B00CF09C8 /* AFHTTPRequestOperation.h */,
+				8E3B7C7E167AA10B00CF09C8 /* AFHTTPRequestOperation.m */,
+				8E3B7C7F167AA10B00CF09C8 /* AFImageRequestOperation.h */,
+				8E3B7C80167AA10B00CF09C8 /* AFImageRequestOperation.m */,
+				8E3B7C81167AA10B00CF09C8 /* AFJSONRequestOperation.h */,
+				8E3B7C82167AA10B00CF09C8 /* AFJSONRequestOperation.m */,
+				8E3B7C83167AA10B00CF09C8 /* AFNetworkActivityIndicatorManager.h */,
+				8E3B7C84167AA10B00CF09C8 /* AFNetworkActivityIndicatorManager.m */,
+				8E3B7C85167AA10B00CF09C8 /* AFNetworking.h */,
+				8E3B7C86167AA10B00CF09C8 /* AFPropertyListRequestOperation.h */,
+				8E3B7C87167AA10B00CF09C8 /* AFPropertyListRequestOperation.m */,
+				8E3B7C88167AA10B00CF09C8 /* AFURLConnectionOperation.h */,
+				8E3B7C89167AA10B00CF09C8 /* AFURLConnectionOperation.m */,
+				8E3B7C8A167AA10B00CF09C8 /* AFXMLRequestOperation.h */,
+				8E3B7C8B167AA10B00CF09C8 /* AFXMLRequestOperation.m */,
+				8E3B7C8C167AA10B00CF09C8 /* UIImageView+AFNetworking.h */,
+				8E3B7C8D167AA10B00CF09C8 /* UIImageView+AFNetworking.m */,
+			);
+			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		8E3B7CAE167AA12000CF09C8 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8E69C088167AA32C000444EB /* bar.png */,
+				8E69C089167AA32C000444EB /* bar@2x.png */,
+				8E69C08A167AA32C000444EB /* cameraOff.png */,
+				8E69C08B167AA32C000444EB /* cameraOff@2x.png */,
+				8E69C08C167AA32C000444EB /* cameraOn.png */,
+				8E69C08D167AA32C000444EB /* cameraOn@2x.png */,
+				8E69C08E167AA32C000444EB /* list.png */,
+				8E69C08F167AA32C000444EB /* list@2x.png */,
+				8E69C090167AA32C000444EB /* roll.png */,
+				8E69C091167AA32C000444EB /* roll@2x.png */,
+				8E69C092167AA32C000444EB /* watermark.png */,
+			);
+			path = Resources;
+			sourceTree = SOURCE_ROOT;
+		};
+		8E3B7CD7167AA16300CF09C8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8E3B7CC6167AA15F00CF09C8 /* AppDelegate.h */,
+				8E3B7CC7167AA15F00CF09C8 /* AppDelegate.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		8E3B7CD9167AA17600CF09C8 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8E3B7CC9167AA15F00CF09C8 /* LoginViewController.h */,
+				8E3B7CCA167AA15F00CF09C8 /* LoginViewController.m */,
+				8E3B7CCD167AA15F00CF09C8 /* MediaViewController.h */,
+				8E3B7CCE167AA15F00CF09C8 /* MediaViewController.m */,
+				8E3B7CD4167AA15F00CF09C8 /* UploadViewController.h */,
+				8E3B7CD5167AA15F00CF09C8 /* UploadViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		8E3B7CDA167AA18900CF09C8 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				8E3B7CCB167AA15F00CF09C8 /* LoginViewController.xib */,
+				8E3B7CCF167AA15F00CF09C8 /* MediaViewController.xib */,
+				8E3B7CD6167AA15F00CF09C8 /* UploadViewController.xib */,
+			);
+			name = Xibs;
+			sourceTree = "<group>";
+		};
+		8E3B7CDB167AA18D00CF09C8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8E3B7CDA167AA18900CF09C8 /* Xibs */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		8E3B7CDC167AA19300CF09C8 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8E3B7CD2167AA15F00CF09C8 /* ShelbyAPIClient.h */,
+				8E3B7CD3167AA15F00CF09C8 /* ShelbyAPIClient.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8E3B7C50167AA08500CF09C8 /* Shelby Cam */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E3B7C75167AA08500CF09C8 /* Build configuration list for PBXNativeTarget "Shelby Cam" */;
+			buildPhases = (
+				8E3B7C4D167AA08500CF09C8 /* Sources */,
+				8E3B7C4E167AA08500CF09C8 /* Frameworks */,
+				8E3B7C4F167AA08500CF09C8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Shelby Cam";
+			productName = "Shelby Cam";
+			productReference = 8E3B7C51167AA08500CF09C8 /* Shelby Cam.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8E3B7C48167AA08500CF09C8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Arthur Ariel Sabintsev";
+			};
+			buildConfigurationList = 8E3B7C4B167AA08500CF09C8 /* Build configuration list for PBXProject "Shelby Cam" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 8E3B7C46167AA08500CF09C8;
+			productRefGroup = 8E3B7C52167AA08500CF09C8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8E3B7C50167AA08500CF09C8 /* Shelby Cam */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8E3B7C4F167AA08500CF09C8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E69C09E167AA391000444EB /* LoginViewController.xib in Resources */,
+				8E69C09F167AA391000444EB /* MediaViewController.xib in Resources */,
+				8E69C0A0167AA391000444EB /* UploadViewController.xib in Resources */,
+				8E3B7C60167AA08500CF09C8 /* InfoPlist.strings in Resources */,
+				8E3B7C68167AA08500CF09C8 /* Default.png in Resources */,
+				8E3B7C6A167AA08500CF09C8 /* Default@2x.png in Resources */,
+				8E3B7C6C167AA08500CF09C8 /* Default-568h@2x.png in Resources */,
+				8E69C093167AA32C000444EB /* bar.png in Resources */,
+				8E69C094167AA32C000444EB /* bar@2x.png in Resources */,
+				8E69C095167AA32C000444EB /* cameraOff.png in Resources */,
+				8E69C096167AA32C000444EB /* cameraOff@2x.png in Resources */,
+				8E69C097167AA32C000444EB /* cameraOn.png in Resources */,
+				8E69C098167AA32C000444EB /* cameraOn@2x.png in Resources */,
+				8E69C099167AA32C000444EB /* list.png in Resources */,
+				8E69C09A167AA32C000444EB /* list@2x.png in Resources */,
+				8E69C09B167AA32C000444EB /* roll.png in Resources */,
+				8E69C09C167AA32C000444EB /* roll@2x.png in Resources */,
+				8E69C09D167AA32C000444EB /* watermark.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8E3B7C4D167AA08500CF09C8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E3B7CEB167AA26F00CF09C8 /* AppDelegate.m in Sources */,
+				8E3B7CEC167AA26F00CF09C8 /* ShelbyAPIClient.m in Sources */,
+				8E3B7CED167AA26F00CF09C8 /* LoginViewController.m in Sources */,
+				8E3B7CEE167AA26F00CF09C8 /* MediaViewController.m in Sources */,
+				8E3B7CEF167AA26F00CF09C8 /* UploadViewController.m in Sources */,
+				8E3B7C62167AA08500CF09C8 /* main.m in Sources */,
+				8E3B7C9A167AA10B00CF09C8 /* AFHTTPClient.m in Sources */,
+				8E3B7C9B167AA10B00CF09C8 /* AFHTTPRequestOperation.m in Sources */,
+				8E3B7C9C167AA10B00CF09C8 /* AFImageRequestOperation.m in Sources */,
+				8E3B7C9D167AA10B00CF09C8 /* AFJSONRequestOperation.m in Sources */,
+				8E3B7C9E167AA10B00CF09C8 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				8E3B7C9F167AA10B00CF09C8 /* AFPropertyListRequestOperation.m in Sources */,
+				8E3B7CA0167AA10B00CF09C8 /* AFURLConnectionOperation.m in Sources */,
+				8E3B7CA1167AA10B00CF09C8 /* AFXMLRequestOperation.m in Sources */,
+				8E3B7CA2167AA10B00CF09C8 /* UIImageView+AFNetworking.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		8E3B7C5E167AA08500CF09C8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8E3B7C5F167AA08500CF09C8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8E3B7C73167AA08500CF09C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		8E3B7C74167AA08500CF09C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8E3B7C76167AA08500CF09C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Shelby Cam/Shelby Cam-Prefix.pch";
+				INFOPLIST_FILE = "Shelby Cam/Shelby Cam-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		8E3B7C77167AA08500CF09C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Shelby Cam/Shelby Cam-Prefix.pch";
+				INFOPLIST_FILE = "Shelby Cam/Shelby Cam-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8E3B7C4B167AA08500CF09C8 /* Build configuration list for PBXProject "Shelby Cam" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E3B7C73167AA08500CF09C8 /* Debug */,
+				8E3B7C74167AA08500CF09C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E3B7C75167AA08500CF09C8 /* Build configuration list for PBXNativeTarget "Shelby Cam" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E3B7C76167AA08500CF09C8 /* Debug */,
+				8E3B7C77167AA08500CF09C8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8E3B7C48167AA08500CF09C8 /* Project object */;
+}
