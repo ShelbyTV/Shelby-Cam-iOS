@@ -8,7 +8,7 @@
 
 #import "MediaViewController.h"
 #import "UploadViewController.h"
-#import "AppDelegate.h"
+#import "ProcessingVideoView.h"
 
 @interface MediaViewController ()
 
@@ -17,6 +17,7 @@
 @property (strong, nonatomic) AVCaptureMovieFileOutput *movieFileOutput;
 @property (strong, nonatomic) AVCaptureSession *session;
 @property (strong, nonatomic) UIView *recordVideoView;
+@property (strong, nonatomic) ProcessingVideoView *processingVideoView;
 
 - (void)stopRecording;
 - (void)addWatermarkForMovieFile:(NSURL*)url;
@@ -29,6 +30,7 @@
 @synthesize appDelegate = _appDelegate;
 @synthesize pickerController = _pickerController;
 @synthesize recordVideoView = _recordVideoView;
+@synthesize processingVideoView = _processingVideoView;
 @synthesize recordNewVideoButton = _recordNewVideoButton;
 @synthesize presentUserRollButton = _presentUserRollButton;
 @synthesize chooseExistingVideoButton = _chooseExistingVideoButton;
@@ -60,7 +62,6 @@
 {
     [super viewDidLoad];
     self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-   
 }
 
 
@@ -68,7 +69,7 @@
 - (IBAction)recordVideoButtonAction:(id)sender
 {
 
-    DLog(@"Recording New Video");
+    DLog(@"Began Recording New Video");
     
     // Change Button
     [self.recordNewVideoButton setImage:[UIImage imageNamed:@"cameraOn"] forState:UIControlStateNormal];
@@ -139,12 +140,23 @@
 #pragma mark - Private Methods
 - (void)stopRecording
 {
+    
     // Stop recording
     [self.movieFileOutput stopRecording];
     [self.session stopRunning];
+    [self.recordVideoView removeFromSuperview];
     self.movieFileOutput = nil;
     self.session = nil;
-    [self.recordVideoView removeFromSuperview];
+    
+    DLog(@"Ended Recording New Video");
+    
+    // Processing Screen
+    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ProcessingVideoView" owner:self options:nil];
+    self.processingVideoView = [nib objectAtIndex:0];
+    [self.processingVideoView.indicator startAnimating];
+    [self.processingVideoView setAlpha:0.67f];
+    [self.view addSubview:_processingVideoView];
+    
     
     // Change Button
     [self.recordNewVideoButton setImage:[UIImage imageNamed:@"cameraOff"] forState:UIControlStateNormal];
@@ -215,7 +227,15 @@
              [library writeVideoAtPathToSavedPhotosAlbum:exportUrl
                                          completionBlock:^(NSURL *assetURL, NSError *error){
                                              
-                                             DLog(@"Added Watermark");
+                                             DLog(@"Finished Processing Video");
+                                             
+                                             [self.processingVideoView.indicator stopAnimating];
+                                             [UIView animateWithDuration:1.0f animations:^{
+                                                 [self.processingVideoView setAlpha:0.0f];
+                                             } completion:^(BOOL finished) {
+                                                 [self.processingVideoView removeFromSuperview];
+                                             }];
+                                             
 //                                             UploadViewController *uploadViewController = [[UploadViewController alloc] initWithNibName:@"UploadViewController" bundle:nil];
 //                                             [self.pickerController pushViewController:uploadViewController animated:YES];
                                          }];

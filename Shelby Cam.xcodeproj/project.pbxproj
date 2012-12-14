@@ -50,6 +50,8 @@
 		8E69C09E167AA391000444EB /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E3B7CCB167AA15F00CF09C8 /* LoginViewController.xib */; };
 		8E69C09F167AA391000444EB /* MediaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E3B7CCF167AA15F00CF09C8 /* MediaViewController.xib */; };
 		8E69C0A0167AA391000444EB /* UploadViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E3B7CD6167AA15F00CF09C8 /* UploadViewController.xib */; };
+		8E8A542F167AA55700F42D4A /* ProcessingVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E8A542E167AA55700F42D4A /* ProcessingVideoView.m */; };
+		8E8A5432167AA56A00F42D4A /* ProcessingVideoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E8A5431167AA56900F42D4A /* ProcessingVideoView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +117,9 @@
 		8E69C090167AA32C000444EB /* roll.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = roll.png; sourceTree = "<group>"; };
 		8E69C091167AA32C000444EB /* roll@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roll@2x.png"; sourceTree = "<group>"; };
 		8E69C092167AA32C000444EB /* watermark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = watermark.png; sourceTree = "<group>"; };
+		8E8A542D167AA55700F42D4A /* ProcessingVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProcessingVideoView.h; sourceTree = "<group>"; };
+		8E8A542E167AA55700F42D4A /* ProcessingVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProcessingVideoView.m; sourceTree = "<group>"; };
+		8E8A5431167AA56900F42D4A /* ProcessingVideoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProcessingVideoView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +294,7 @@
 			children = (
 				8E3B7CCB167AA15F00CF09C8 /* LoginViewController.xib */,
 				8E3B7CCF167AA15F00CF09C8 /* MediaViewController.xib */,
+				8E8A5431167AA56900F42D4A /* ProcessingVideoView.xib */,
 				8E3B7CD6167AA15F00CF09C8 /* UploadViewController.xib */,
 			);
 			name = Xibs;
@@ -298,6 +304,8 @@
 			isa = PBXGroup;
 			children = (
 				8E3B7CDA167AA18900CF09C8 /* Xibs */,
+				8E8A542D167AA55700F42D4A /* ProcessingVideoView.h */,
+				8E8A542E167AA55700F42D4A /* ProcessingVideoView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -380,6 +388,7 @@
 				8E69C09B167AA32C000444EB /* roll.png in Resources */,
 				8E69C09C167AA32C000444EB /* roll@2x.png in Resources */,
 				8E69C09D167AA32C000444EB /* watermark.png in Resources */,
+				8E8A5432167AA56A00F42D4A /* ProcessingVideoView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +414,7 @@
 				8E3B7CA0167AA10B00CF09C8 /* AFURLConnectionOperation.m in Sources */,
 				8E3B7CA1167AA10B00CF09C8 /* AFXMLRequestOperation.m in Sources */,
 				8E3B7CA2167AA10B00CF09C8 /* UIImageView+AFNetworking.m in Sources */,
+				8E8A542F167AA55700F42D4A /* ProcessingVideoView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
