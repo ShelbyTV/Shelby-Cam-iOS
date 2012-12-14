@@ -22,4 +22,3 @@
 
 /// NSUserDefault Constants
 #define kShelbyAuthToken                    @"Shelby Authorization Token"
-#define kYouTubeAuthorized                  @"YouTube Authorized"

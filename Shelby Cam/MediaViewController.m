@@ -22,7 +22,7 @@
 @property (strong, nonatomic) UITapGestureRecognizer *startRecordingRecognizer;
 @property (strong, nonatomic) UITapGestureRecognizer *stopRecordingRecognizer;
 
-
+- (void)startRecording;
 - (void)stopRecording;
 - (void)addWatermarkForMovieFile:(NSURL*)url;
 - (NSString*)tempFileString;
@@ -109,11 +109,19 @@
 
 - (IBAction)flipCameraButtonAction:(id)sender
 {
-    
+    DLog(@"%@", [AVCaptureDevice devices]);
 }
 
 - (IBAction)settingsButtonAction:(id)sender
 {
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Logout of Shelby Cam?"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"NO"
+                                               destructiveButtonTitle:@"Yes"
+                                                    otherButtonTitles:nil, nil];
+    
+    [actionSheet showInView:self.view];
     
 }
 
@@ -133,6 +141,17 @@
 - (IBAction)recordVideoButtonAction:(id)sender
 {
 
+    [self startRecording];
+}
+
+- (void)presentUserRollButtonAction:(id)sender
+{
+    // Present Rolls Modally
+}
+
+#pragma mark - Private Methods
+- (void)startRecording
+{
     DLog(@"Began Recording New Video");
     
     // Change Button
@@ -167,7 +186,7 @@
     NSDictionary *outputSettings = [[NSDictionary alloc] initWithObjectsAndKeys: AVVideoCodecJPEG, AVVideoCodecKey, nil];
     [stillImageOutput setOutputSettings:outputSettings];
     [self.session addOutput:stillImageOutput];
-
+    
     // Add Video File Output
     self.movieFileOutput = [[AVCaptureMovieFileOutput alloc] init];
     [self.session addOutput:_movieFileOutput];
@@ -179,7 +198,7 @@
     [audioOutput setSampleBufferDelegate:self queue:audioQueue];
     
     [self.session commitConfiguration];
-
+    
     // Add Video Layer
     CGRect videoCaptureFrame = CGRectMake(0.0f, 20.0f, 320.0f, 376.0f);
     AVCaptureVideoPreviewLayer *captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:_session];
@@ -201,12 +220,6 @@
 
 }
 
-- (void)presentUserRollButtonAction:(id)sender
-{
-    // Present Rolls Modally
-}
-
-#pragma mark - Private Methods
 - (void)stopRecording
 {
     
@@ -338,6 +351,16 @@
          
      }       
      ];
+}
+
+#pragma mark - UIActionSheetDelegate Methods
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ( 1 == buttonIndex ) {
+        
+        [self.appDelegate logout];
+        
+    }
 }
 
 #pragma mark - AVCaptureFileOutputRecordingDelegate Methods
