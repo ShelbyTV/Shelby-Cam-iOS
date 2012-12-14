@@ -382,10 +382,32 @@
     
 }
 
-#pragma mark - UIImagePickerOrientation Methods
+#pragma mark - UIImagePickerDelegate Methods
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    [self addWatermarkForMovieFile:[NSURL URLWithString:UIImagePickerControllerMediaURL]];
+    [self.pickerController dismissViewControllerAnimated:YES completion:nil];
+    
+    // Processing Screen
+    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ProcessingVideoView" owner:self options:nil];
+    self.processingVideoView = [nib objectAtIndex:0];
+    [self.processingVideoView.indicator startAnimating];
+    [self.processingVideoView setAlpha:0.67f];
+    [self.view addSubview:_processingVideoView];
+    
+    // Change Button
+    [self.recordNewVideoButton setImage:[UIImage imageNamed:@"cameraOff"] forState:UIControlStateNormal];
+    [self.recordNewVideoButton removeTarget:self action:@selector(stopRecording) forControlEvents:UIControlEventTouchUpInside];
+    [self.recordNewVideoButton addTarget:self action:@selector(recordVideoButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    
+    // Remove Recognizer
+    [self.view removeGestureRecognizer:_stopRecordingRecognizer];
+    
+    // Disable Interaction
+    [self.view setUserInteractionEnabled:NO];
+    
+    // Add Watermark
+    [self addWatermarkForMovieFile:[info objectForKey:UIImagePickerControllerMediaURL]];
+    
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
