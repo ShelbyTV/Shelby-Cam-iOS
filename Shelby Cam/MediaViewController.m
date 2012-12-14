@@ -29,20 +29,26 @@
 @implementation MediaViewController
 @synthesize appDelegate = _appDelegate;
 @synthesize pickerController = _pickerController;
-@synthesize recordVideoView = _recordVideoView;
-@synthesize processingVideoView = _processingVideoView;
-@synthesize recordNewVideoButton = _recordNewVideoButton;
-@synthesize presentUserRollButton = _presentUserRollButton;
-@synthesize chooseExistingVideoButton = _chooseExistingVideoButton;
 @synthesize movieFileOutput = _movieFileOutput;
 @synthesize session = _session;
-
+@synthesize recordVideoView = _recordVideoView;
+@synthesize processingVideoView = _processingVideoView;
+@synthesize tapToStartImageView = _tapToStartImageView;
+@synthesize toggleLightButton = _toggleLightButton;
+@synthesize flipCameraButton = _flipCameraButton;
+@synthesize settingsButton = _settingsButton;
+@synthesize chooseExistingVideoButton = _chooseExistingVideoButton;
+@synthesize recordNewVideoButton = _recordNewVideoButton;
+@synthesize presentUserRollButton = _presentUserRollButton;
 
 #pragma mark - Memory Management Methods
 - (void)dealloc
 {
-    self.recordNewVideoButton = nil;
+    self.toggleLightButton = nil;
+    self.flipCameraButton = nil;
+    self.settingsButton = nil;
     self.chooseExistingVideoButton = nil;
+    self.recordNewVideoButton = nil;
     self.presentUserRollButton = nil;
 }
 
@@ -61,9 +67,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
-
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(recordVideoButtonAction:)];
+    [tapGestureRecognizer setNumberOfTapsRequired:1];
+    [self.tapToStartImageView addGestureRecognizer:tapGestureRecognizer];
+    
     // If navigationBar isn't hidden, hide it.
     if ( NO == self.navigationController.navigationBarHidden ) {
         [self.navigationController setNavigationBarHidden:YES];
@@ -71,6 +81,32 @@
     
 }
 
+- (IBAction)toggleLightButtonAction:(id)sender
+{
+    
+}
+
+- (IBAction)flipCameraButtonAction:(id)sender
+{
+    
+}
+
+- (IBAction)settingsButtonAction:(id)sender
+{
+    
+}
+
+- (IBAction)chooseExistingVideoButtonAction:(id)sender
+{
+    self.pickerController = [[UIImagePickerController alloc] init];
+    self.pickerController.delegate = self;
+    self.pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    self.pickerController.mediaTypes = [NSArray arrayWithObject:(NSString*)kUTTypeMovie];
+    self.pickerController.allowsEditing = NO;
+    self.pickerController.wantsFullScreenLayout = YES;
+    
+    [self presentViewController:_pickerController animated:YES completion:nil];
+}
 
 #pragma mark - Public Methods
 - (IBAction)recordVideoButtonAction:(id)sender
@@ -107,7 +143,7 @@
     [self.session commitConfiguration];
 
     // Add Video Layer
-    CGRect videoCaptureFrame = CGRectMake(0.0f, -10.0f, 320.0f, 436.0f);
+    CGRect videoCaptureFrame = CGRectMake(0.0f, 34.0f, 320.0f, 436.0f);
     AVCaptureVideoPreviewLayer *captureVideoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:_session];
     [captureVideoPreviewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
     [captureVideoPreviewLayer setFrame:videoCaptureFrame];
@@ -127,22 +163,12 @@
 
 }
 
-- (IBAction)chooseExistingVideoButtonAction:(id)sender
-{
-    self.pickerController = [[UIImagePickerController alloc] init];
-    self.pickerController.delegate = self;
-    self.pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    self.pickerController.mediaTypes = [NSArray arrayWithObject:(NSString*)kUTTypeMovie];
-    self.pickerController.allowsEditing = NO;
-    self.pickerController.wantsFullScreenLayout = YES;
-
-    [self presentViewController:_pickerController animated:YES completion:nil];
-}
-
 - (void)presentUserRollButtonAction:(id)sender
 {
-    
+    // Present Rolls Modally
 }
+
+
 
 #pragma mark - Private Methods
 - (void)stopRecording

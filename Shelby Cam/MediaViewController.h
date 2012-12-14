@@ -8,16 +8,27 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MediaViewController : UIViewController <UIImagePickerControllerDelegate, AVCaptureFileOutputRecordingDelegate, UINavigationControllerDelegate>
+@interface MediaViewController : UIViewController
+<
+UIImagePickerControllerDelegate,
+AVCaptureFileOutputRecordingDelegate,
+UINavigationControllerDelegate
+>
 
-
-@property (weak, nonatomic) IBOutlet UIButton *recordNewVideoButton;
+@property (weak, nonatomic) IBOutlet UIImageView *tapToStartImageView;
+@property (weak, nonatomic) IBOutlet UIButton *toggleLightButton;
+@property (weak, nonatomic) IBOutlet UIButton *flipCameraButton;
+@property (weak, nonatomic) IBOutlet UIButton *settingsButton;
 @property (weak, nonatomic) IBOutlet UIButton *chooseExistingVideoButton;
+@property (weak, nonatomic) IBOutlet UIButton *recordNewVideoButton;
 @property (weak, nonatomic) IBOutlet UIButton *presentUserRollButton;
 
 
-- (IBAction)recordVideoButtonAction:(id)sender;
+- (IBAction)toggleLightButtonAction:(id)sender;
+- (IBAction)flipCameraButtonAction:(id)sender;
+- (IBAction)settingsButtonAction:(id)sender;
 - (IBAction)chooseExistingVideoButtonAction:(id)sender;
+- (IBAction)recordVideoButtonAction:(id)sender;
 - (IBAction)presentUserRollButtonAction:(id)sender;
 
 

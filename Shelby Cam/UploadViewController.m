@@ -68,6 +68,7 @@
     } else {
         
         DLog(@"User already authenticated with Google/YouTube");
+        
     }
 
 }
