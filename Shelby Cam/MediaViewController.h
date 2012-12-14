@@ -12,6 +12,7 @@
 <
 UIImagePickerControllerDelegate,
 AVCaptureFileOutputRecordingDelegate,
+AVCaptureAudioDataOutputSampleBufferDelegate,
 UINavigationControllerDelegate
 >
 

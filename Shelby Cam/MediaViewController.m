@@ -16,6 +16,7 @@
 @property (strong, nonatomic) UIImagePickerController *pickerController;
 @property (strong, nonatomic) AVCaptureSession *session;
 @property (strong, nonatomic) AVCaptureMovieFileOutput *movieFileOutput;
+@property (strong, nonatomic) AVCaptureDevice *videoDevice;
 @property (strong, nonatomic) UIView *recordVideoView;
 @property (strong, nonatomic) ProcessingVideoView *processingVideoView;
 @property (strong, nonatomic) UITapGestureRecognizer *startRecordingRecognizer;
@@ -34,6 +35,7 @@
 @synthesize pickerController = _pickerController;
 @synthesize movieFileOutput = _movieFileOutput;
 @synthesize session = _session;
+@synthesize videoDevice = _videoDevice;
 @synthesize recordVideoView = _recordVideoView;
 @synthesize processingVideoView = _processingVideoView;
 @synthesize startRecordingRecognizer = _startRecordingRecognizer;
@@ -54,6 +56,7 @@
     self.flipCameraButton = nil;
     self.settingsButton = nil;
     self.chooseExistingVideoButton = nil;
+    self.videoDevice = nil;
     self.recordNewVideoButton = nil;
     self.presentUserRollButton = nil;
 }
@@ -80,6 +83,27 @@
 - (IBAction)toggleLightButtonAction:(id)sender
 {
     
+    if ( ![self videoDevice] ) self.videoDevice =[AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    
+    if ( self.videoDevice.torchMode == AVCaptureTorchModeOff ) {
+        
+        [self.videoDevice lockForConfiguration:nil];
+        [self.videoDevice setTorchMode:AVCaptureTorchModeOn];
+        [self.videoDevice setFlashMode:AVCaptureFlashModeOn];
+        [self.videoDevice unlockForConfiguration];
+        
+        [self.toggleLightButton setImage:[UIImage imageNamed:@"lightOn"] forState:UIControlStateNormal];
+        
+    } else {
+        
+        [self.videoDevice lockForConfiguration:nil];
+        [self.videoDevice setTorchMode:AVCaptureTorchModeOff];
+        [self.videoDevice setFlashMode:AVCaptureFlashModeOff];
+        [self.videoDevice unlockForConfiguration];
+        
+        [self.toggleLightButton setImage:[UIImage imageNamed:@"lightOff"] forState:UIControlStateNormal];
+    }
+
 }
 
 - (IBAction)flipCameraButtonAction:(id)sender
@@ -128,8 +152,8 @@
     [self.session beginConfiguration];
     
     // Add Video Input from Device
-    AVCaptureDevice *videoDevice =[AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    AVCaptureDeviceInput *videoDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:videoDevice error:nil];
+    if ( ![self videoDevice] ) self.videoDevice =[AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    AVCaptureDeviceInput *videoDeviceInput = [AVCaptureDeviceInput deviceInputWithDevice:_videoDevice error:nil];
     [self.session addInput:videoDeviceInput];
     
     // Add Audio Input from Device
@@ -150,7 +174,9 @@
     // Add Audio File Output
     AVCaptureAudioDataOutput * audioOutput = [[AVCaptureAudioDataOutput alloc] init];
     [self.session addOutput:audioOutput];
-
+    dispatch_queue_t audioQueue = dispatch_queue_create("MY QUEUE", NULL);
+    [audioOutput setSampleBufferDelegate:self queue:audioQueue];
+    
     [self.session commitConfiguration];
 
     // Add Video Layer
@@ -203,6 +229,9 @@
     
     // Remove Recognizer
     [self.view removeGestureRecognizer:_stopRecordingRecognizer];
+    
+    // Disable Interaction
+    [self.view setUserInteractionEnabled:NO];
     
 }
 
@@ -276,6 +305,9 @@
                                                  [self.processingVideoView setAlpha:0.0f];
                                              } completion:^(BOOL finished) {
                                                  
+                                                 // Re-enable Interaction
+                                                 [self.view setUserInteractionEnabled:YES];
+                                                 
                                                  // Add TapGestureRecognizer to allow for recording to begin (next time user decides to tap)
                                                  self.startRecordingRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(recordVideoButtonAction:)];
                                                  [self.startRecordingRecognizer setNumberOfTapsRequired:1];
@@ -292,6 +324,7 @@
                                                  // Push Upload ViewController
                                                  UploadViewController *uploadViewController = [[UploadViewController alloc] initWithNibName:@"UploadViewController" bundle:nil];
                                                  [self.navigationController pushViewController:uploadViewController animated:YES];
+                                                 
                                                  
                                              }];
                                              
@@ -312,6 +345,12 @@
 - (void)captureOutput:(AVCaptureFileOutput *)captureOutput didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL fromConnections:(NSArray *)connections error:(NSError *)error
 {
     [self addWatermarkForMovieFile:outputFileURL];
+}
+
+#pragma mark - AVCaptureAudioDataOutputSampleBufferDelegate
+- (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
+{
+    
 }
 
 #pragma mark - UIImagePickerOrientation Methods
