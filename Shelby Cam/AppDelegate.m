@@ -9,21 +9,21 @@
 #import "AppDelegate.h"
 #import "MediaViewController.h"
 #import "ShelbyLoginViewController.h"
-
 #import "GTMOAuth2ViewControllerTouch.h"
 
 @interface AppDelegate ()
 @property (strong, nonatomic) UINavigationController *navigationController;
-@property (strong, nonatomic) ShelbyLoginViewController *shelbyLoginViewController;
+@property (strong, nonatomic) UINavigationController *loginNavigationController;
 
 - (void)setupObservers;
 - (void)userDidAuthenticate:(NSNotification*)notification;
+- (void)presentLoginViewController;
 
 @end
 
 @implementation AppDelegate
 @synthesize navigationController = _navigationController;
-@synthesize shelbyLoginViewController = _shelbyLoginViewController;
+@synthesize loginNavigationController = _loginNavigationController;
 
 #pragma mark - UIApplicationDelegate Methods
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -34,16 +34,17 @@
     
     // Build Window and rootView
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
     MediaViewController *mediaViewController = [[MediaViewController alloc] initWithNibName:@"MediaViewController" bundle:nil];
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:mediaViewController];
     [self.navigationController setNavigationBarHidden:YES];
+    
     self.window.rootViewController = _navigationController;
     [self.window makeKeyAndVisible];
     
     if ( ![[NSUserDefaults standardUserDefaults] objectForKey:kShelbyAuthToken] ) {
         
-        self.shelbyLoginViewController = [[ShelbyLoginViewController alloc] initWithNibName:@"ShelbyLoginViewController" bundle:nil];
-        [self.window.rootViewController presentViewController:_shelbyLoginViewController animated:YES completion:nil];
+        [self presentLoginViewController];
         
     } else {
         
@@ -85,9 +86,17 @@
 #pragma mark - Public Methods
 - (void)logout
 {
-    // Remove tokens
+    // Remove Shelby Token
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:kShelbyAuthToken];
-
+    
+    // Remove Google Authorization
+    GTMOAuth2Authentication *auth = [GTMOAuth2ViewControllerTouch authForGoogleFromKeychainForName:kYouTubeKeychainName
+                                                                                          clientID:kYouTubeClientID
+                                                                                      clientSecret:kYouTubeClientSecret];
+    [GTMOAuth2ViewControllerTouch revokeTokenForGoogleAuthentication:auth];
+    
+    // Present LoginViewController
+    [self presentLoginViewController];
 }
 
 #pragma mark - Private Methods
@@ -99,9 +108,19 @@
                                                object:nil];
 }
 
+- (void)presentLoginViewController
+{
+    ShelbyLoginViewController *shelbyLoginViewController = [[ShelbyLoginViewController alloc] initWithNibName:@"ShelbyLoginViewController" bundle:nil];
+    self.loginNavigationController = [[UINavigationController alloc] initWithRootViewController:shelbyLoginViewController];
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"topBar"] forBarMetrics:UIBarMetricsDefault];
+    UIImageView *logoView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"navigationLogo"]];
+    self.loginNavigationController.visibleViewController.navigationItem.titleView = logoView;
+    [self.window.rootViewController presentViewController:_loginNavigationController animated:YES completion:nil];
+}
+
 - (void)userDidAuthenticate:(NSNotification *)notification
 {
-    if ( _shelbyLoginViewController ) [self.shelbyLoginViewController dismissViewControllerAnimated:YES completion:nil];
+    if ( _loginNavigationController ) [self.loginNavigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

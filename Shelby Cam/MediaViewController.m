@@ -339,7 +339,9 @@
                                                  self.session = nil;
                                                  
                                                  // Push Upload ViewController
-                                                 UploadViewController *uploadViewController = [[UploadViewController alloc] initWithNibName:@"UploadViewController" bundle:nil];
+                                                 UploadViewController *uploadViewController = [[UploadViewController alloc] initWithNibName:@"UploadViewController"
+                                                                                                                                     bundle:nil
+                                                                                                                           andLocalVideoURL:exportUrl];
                                                  [self.navigationController pushViewController:uploadViewController animated:YES];
                                                  
                                                  
@@ -356,7 +358,7 @@
 #pragma mark - UIActionSheetDelegate Methods
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if ( 1 == buttonIndex ) {
+    if ( 0 == buttonIndex ) {
         
         [self.appDelegate logout];
         

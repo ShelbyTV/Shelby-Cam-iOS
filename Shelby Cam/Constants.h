@@ -22,3 +22,6 @@
 
 /// NSUserDefault Constants
 #define kShelbyAuthToken                    @"Shelby Authorization Token"
+
+/// Color Constants
+#define kShelbyGrayColor                    [UIColor colorWithRed:191.0f/255.0f green:191.0f/255.0f  blue:191.0f/255.0f  alpha:1.0f];

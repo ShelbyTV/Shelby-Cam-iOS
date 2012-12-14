@@ -10,4 +10,8 @@
 
 @interface UploadViewController : UIViewController
 
+- (id)initWithNibName:(NSString *)nibNameOrNil
+               bundle:(NSBundle *)nibBundleOrNil
+     andLocalVideoURL:(NSURL*)videoURL;
+
 @end
